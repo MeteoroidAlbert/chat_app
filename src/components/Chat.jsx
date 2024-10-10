@@ -31,7 +31,7 @@ function Chat() {
     if(window.location.hostname === "localhost") {
         wsURL = "ws://localhost:5000";
     }
-    else if (window.location.hostname === "https://meteoroidalbert.github.io") {
+    else if (window.location.hostname === "meteoroidalbert.github.io") {
         wsURL = "wss://https://chat-app-server-c0q0.onrender.com";
     }
 
