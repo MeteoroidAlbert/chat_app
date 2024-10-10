@@ -24,7 +24,17 @@ function App() {
       })
   }, [])
 
-  axios.defaults.baseURL = "https://chat-app-server-c0q0.onrender.com";
+  let URL;
+  if(window.location.hostname === "localhost") {
+      wsURL = "ws://localhost:5000";
+  }
+  else if (window.location.hostname === "https://meteoroidalbert.github.io") {
+      URL = "wss://https://chat-app-server-c0q0.onrender.com";
+  }
+
+
+
+  axios.defaults.baseURL = URL;
   axios.defaults.withCredentials = true;
   return (
     <div>
