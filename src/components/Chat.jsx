@@ -52,7 +52,7 @@ function Chat() {
         }
 
 
-        ws.current = new WebSocket("https://chat-app-server-c0q0.onrender.com");   //與目的地建立websocket連線
+        ws.current = new WebSocket("wss://chat-app-server-c0q0.onrender.com");   //與目的地建立websocket連線
 
         ws.current.addEventListener("message", handleMessage);   //監聽對象:ws (即與url指向的伺服器的websocket連線);監聽事件:伺服器向客戶端發送message
         ws.current.addEventListener("close", () => {
