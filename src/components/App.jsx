@@ -26,10 +26,10 @@ function App() {
 
   let URL;
   if(window.location.hostname === "localhost") {
-      wsURL = "ws://localhost:5000";
+      URL = "http://localhost:5000";
   }
   else if (window.location.hostname === "https://meteoroidalbert.github.io") {
-      URL = "wss://https://chat-app-server-c0q0.onrender.com";
+      URL = "https://chat-app-server-c0q0.onrender.com";
   }
 
 
