@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.chat-block {
+    background: linear-gradient(
+    to bottom,
+    #000000 0%,     
+    #3e3d3e 100%     
+); 
+}
+
+.contact-block, .register-and-login-page {
+    background: linear-gradient(
+    to bottom,
+    #000000 0%,     
+    #272528 100%     
+);
+}
+
