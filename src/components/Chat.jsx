@@ -27,13 +27,7 @@ function Chat() {
     const messagesRef = useRef(messages);
     const selectedUserIdRef = useRef(selectedUserId);
 
-    let wsURL;
-    if(window.location.hostname === "localhost") {
-        wsURL = "ws://localhost:5000";
-    }
-    else if (window.location.hostname === "meteoroidalbert.github.io") {
-        wsURL = "wss://https://chat-app-server-c0q0.onrender.com";
-    }
+    
 
 
     useEffect(() => {
@@ -58,7 +52,7 @@ function Chat() {
         }
 
 
-        ws.current = new WebSocket(wsURL);   //與目的地建立websocket連線
+        ws.current = new WebSocket("https://chat-app-server-c0q0.onrender.com");   //與目的地建立websocket連線
 
         ws.current.addEventListener("message", handleMessage);   //監聽對象:ws (即與url指向的伺服器的websocket連線);監聽事件:伺服器向客戶端發送message
         ws.current.addEventListener("close", () => {

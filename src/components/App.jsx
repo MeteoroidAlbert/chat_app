@@ -24,17 +24,10 @@ function App() {
       })
   }, [])
 
-  let URL;
-  if(window.location.hostname === "localhost") {
-      URL = "http://localhost:5000";
-  }
-  else if (window.location.hostname === "meteoroidalbert.github.io") {
-      URL = "https://chat-app-server-c0q0.onrender.com";
-  }
+  
 
 
-
-  axios.defaults.baseURL = URL;
+  axios.defaults.baseURL = "https://chat-app-server-c0q0.onrender.com";
   axios.defaults.withCredentials = true;
   return (
     <div>
