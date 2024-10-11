@@ -74,7 +74,7 @@ function RegisterAndLoginForm() {
                     )}
                     {isLoginOrRegister === "login" && (
                         <div className="text-center">
-                            Dont have an account?
+                            Don&apos;t have an account?
                             <button className="ml-1" onClick={() => setIsLoginOrRegister("register")}>
                                 Register here!
                             </button>
