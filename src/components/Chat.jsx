@@ -237,7 +237,7 @@ function Chat() {
         const fileURL = await getDownloadURL(storageRef);
         sendMessage(null, {
             name: e.target.files[0].name,
-            data: fileURL,
+            url: fileURL,
         });
     };
 
@@ -406,7 +406,7 @@ function Chat() {
                                                         {message.file && (
                                                             <div>
                                                                 <a target="_blank"
-                                                                    href={message.file.data}
+                                                                    href={message.file.url}
                                                                     className="underline flex items-center gap-1 flex-wrap">
                                                                     <div className="flex">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 flex-shrink-0">
@@ -415,7 +415,7 @@ function Chat() {
                                                                         <div className="break-all">{message.file.name}</div>
                                                                     </div>
                                                                 </a>
-                                                                <img src={message.file.data} className="mt-2" />
+                                                                <img src={message.file.url} className="mt-2" />
                                                             </div>
                                                         )}
 
