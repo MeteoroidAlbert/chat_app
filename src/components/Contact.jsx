@@ -12,7 +12,7 @@ function Contact({ id, username, selected, onClick, online }) {
                 <div className="w-1 bg-white h-12"></div>
             )}
             <div className="flex items-center gap-2 py-3 pl-4" >
-                <Avatar online={online} username={username} userId={id} radius={8}/>
+                <Avatar online={online} username={username} userId={id} radius={0}/>
                 <span className="text-white break-words">{username}</span>
 
             </div>

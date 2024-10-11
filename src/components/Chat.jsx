@@ -311,7 +311,7 @@ function Chat() {
                                     {username}
                                 </div>
                                 <div className="absolute right-4 bottom-0">
-                                    <Avatar userId={id} username={username} online={true} radius={10}/>
+                                    <Avatar userId={id} username={username} online={true} radius={1}/>
                                 </div>
                                 
                             </div>

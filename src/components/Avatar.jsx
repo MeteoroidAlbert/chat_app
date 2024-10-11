@@ -8,9 +8,13 @@ function Avatar({ userId, username, online, radius }) {
     const userIdBase10 = parseInt(userId, 16);
     const colorIndex = userIdBase10 % colors.length;
     const color = colors[colorIndex];
+    const radiusList = [
+        "w-8 h-8", "w-10 h-10", "w-12, h-12"
+    ]
+    const radiusSize = radiusList[radius];
 
     return (
-        <div className={`w-${radius} h-${radius} relative rounded-full flex items-center justify-center ${color}` }>
+        <div className={`relative rounded-full flex items-center justify-center ${color} ${radiusSize}` }>
             <div>{username[0].toUpperCase()}</div>
             {online && (
                 <div className="absolute -bottom-1 right-0 w-3 h-3 bg-green-500 rounded-full border border-white" />
