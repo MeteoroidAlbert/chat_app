@@ -14,9 +14,18 @@ import { setLoggedInUsername, setId } from "../redux/chatSlice";
 
 function App() {
   const dispatch = useDispatch();
-  
+
 
   useEffect(() => {
+    let URL;
+    if (window.location.hostname === "localhost") {
+      URL = "http://localhost:5000";
+    } else {
+      URL = "https://chat-app-server-c0q0.onrender.com";
+    }
+
+    axios.defaults.baseURL = URL;
+    axios.defaults.withCredentials = true;
     axios.get("/profile")
       .then(res => {
         dispatch(setId(res.data.userId));
@@ -24,11 +33,10 @@ function App() {
       })
   }, [])
 
-  
 
 
-  axios.defaults.baseURL = "https://chat-app-server-c0q0.onrender.com";
-  axios.defaults.withCredentials = true;
+
+
   return (
     <div>
       <Routes />

@@ -27,7 +27,7 @@ function Chat() {
     const messagesRef = useRef(messages);
     const selectedUserIdRef = useRef(selectedUserId);
 
-    
+
 
 
     useEffect(() => {
@@ -39,20 +39,28 @@ function Chat() {
             // 在組件卸載時關閉 WebSocket 連接
             if (ws.current) {
                 ws.current.close(); // 在組件卸載時立即關閉 WebSocket
-            }
+            };
             window.removeEventListener('resize', handleResize);
         };
 
     }, [])
 
     function connectToWs() {
+        let wsURL;
+        if (window.location.hostname === "localhost") {
+            wsURL = "ws://localhost:5000";
+        } else {
+            wsURL = "wss://chat-app-server-c0q0.onrender.com";
+        };
+
+
         if (ws.current && (ws.current.readyState === WebSocket.OPEN || ws.current.readyState === WebSocket.CONNECTING)) {
             console.log("WebSocket is already connected or connecting.");
             return;
-        }
+        };
 
 
-        ws.current = new WebSocket("wss://chat-app-server-c0q0.onrender.com");   //與目的地建立websocket連線
+        ws.current = new WebSocket(wsURL);   //與目的地建立websocket連線
 
         ws.current.addEventListener("message", handleMessage);   //監聽對象:ws (即與url指向的伺服器的websocket連線);監聽事件:伺服器向客戶端發送message
         ws.current.addEventListener("close", () => {
@@ -311,9 +319,9 @@ function Chat() {
                                     {username}
                                 </div>
                                 <div className="absolute right-4 bottom-0">
-                                    <Avatar userId={id} username={username} online={true} radius={1}/>
+                                    <Avatar userId={id} username={username} online={true} radius={1} />
                                 </div>
-                                
+
                             </div>
                             <div className="px-4 mt-6">
                                 <div className="mb-4 flex bg-white rounded-md">
