@@ -11,7 +11,8 @@ import { uniqBy } from "lodash";
 import axios from "axios";
 import Avatar from "./Avatar";
 
-
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import storage from "../../firebase";
 
 
 function Chat() {
@@ -229,16 +230,17 @@ function Chat() {
     const messagesWithoutDupes = uniqBy(messages, "_id");  //使用lodash函式庫，目標:去除因為react-app在開發環境下的二重複渲染特性造成該Array始終存在一則相同element，即一個訊息在該array中存在兩組!
     //參數1: 要處理的Array; 參數2: 篩選的屬性，此根據_id進行去重複，_id可參閱server.js的將訊息發送給特定用戶端(聊天對象)，_id是指向MongoDB資料庫中的獨立屬性，可以很好地避免重複問題
 
-    const sendFile = (e) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);
-        reader.onload = () => {
-            sendMessage(null, {
-                name: e.target.files[0].name,
-                data: reader.result,
-            });
-        };
+    const sendFile = async (e) => {
+        // console.log(e.target.files);
+        const storageRef = ref(storage, e.target.files[0].name);
+        await uploadBytes(storageRef, e.target.files[0]);
+        const fileURL = await getDownloadURL(storageRef);
+        sendMessage(null, {
+            name: e.target.files[0].name,
+            data: fileURL,
+        });
     };
+
 
 
     const logout = () => {
@@ -404,7 +406,7 @@ function Chat() {
                                                         {message.file && (
                                                             <div>
                                                                 <a target="_blank"
-                                                                    href={axios.defaults.baseURL + "/uploads/" + message.file.name}
+                                                                    href={message.file.data}
                                                                     className="underline flex items-center gap-1 flex-wrap">
                                                                     <div className="flex">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 flex-shrink-0">
@@ -413,7 +415,7 @@ function Chat() {
                                                                         <div className="break-all">{message.file.name}</div>
                                                                     </div>
                                                                 </a>
-                                                                <img src={axios.defaults.baseURL + "/uploads/" + message.file.name} className="mt-2" />
+                                                                <img src={message.file.data} className="mt-2" />
                                                             </div>
                                                         )}
 
