@@ -15,7 +15,7 @@
   2. 上述功能2~6只有在註冊並登入後方可使用。
   3. 註冊僅需username、password，並不會鎖鑰任何實際身分資訊，請安心使用。
   4. 公用帳號:
-     username: test1 (或者test2)
+     username: test1 (或者test2) /n
      password: 1234
   5. 所有功能皆使用個人部署於[Render](https://render.com/)的伺服器完成，伺服器經長時間未使用後會導致初次處理Request速度較慢，通常約需等待1-3 mins，請耐心等待。   
      伺服器服務時間: 10:00 a.m ~ 22:00 p.m
