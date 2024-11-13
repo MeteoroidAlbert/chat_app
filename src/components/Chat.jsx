@@ -266,7 +266,7 @@ function Chat() {
 
     }
 
-    const weekDay = ["Sunday", "Monday", "Tuseday", "wednesday", "Thursday", "Friday", "Saturday"]
+    const weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
     const allPeople = { ...onlinePeopleExcludeOurUser, ...offLinePeople };
 
