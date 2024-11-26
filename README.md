@@ -1,8 +1,6 @@
 # Chat app
-
-### demo: https://meteoroidalbert.github.io/chat_app/
-
 ### 歡迎試用這個chat app!
+### demo: https://meteoroidalbert.github.io/chat_app/
 ### 功能:
   1. 登入、註冊
   2. 即時聊天、即時已讀、即時未讀通知
