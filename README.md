@@ -17,6 +17,6 @@
      password: 1234
      (可以自行使用兩個不同的瀏覽器登入兩個帳戶模擬及時對話與已讀、未讀通知)
   6. 所有功能皆使用個人部署於[Render](https://render.com/)的伺服器完成，伺服器經長時間未使用後會導致初次處理Request速度較慢，通常約需等待1-3 mins，請耐心等待。   
-     伺服器服務時間: 10:00 a.m ~ 22:00 p.m
+     伺服器服務時間: 09:00 a.m ~ 22:00 p.m
   7. 伺服器原始代碼歡迎參閱:https://github.com/MeteoroidAlbert/chat_app_server.git
 ### 使用技術: HTML/CSS、JavaScript、React.js、Tailwind CSS
