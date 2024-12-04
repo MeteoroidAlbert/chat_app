@@ -22,6 +22,7 @@ function Chat() {
     const [open, setOpen] = useState(false);
     const [filteredPeople, setFilteredPeople] = useState({});
     const [isMobile, setIsMobile] = useState(false);
+    
 
     const ws = useRef(null);
     const divUnderMessages = useRef();
@@ -49,7 +50,7 @@ function Chat() {
     function connectToWs() {
         let wsURL;
         if (window.location.hostname === "localhost") {
-            wsURL = "ws://localhost:5000";
+            wsURL = "ws://localhost:5000/chat";
         } else {
             wsURL = "wss://chat-app-server-c0q0.onrender.com";
         };
@@ -60,8 +61,8 @@ function Chat() {
             return;
         };
 
-
-        ws.current = new WebSocket(wsURL);   //與目的地建立websocket連線
+        if (!ws.current || ws.current.readyState === WebSocket.CLOSED) {
+            ws.current = new WebSocket(wsURL);   //與目的地建立websocket連線
 
         ws.current.addEventListener("message", handleMessage);   //監聽對象:ws (即與url指向的伺服器的websocket連線);監聽事件:伺服器向客戶端發送message
         ws.current.addEventListener("close", () => {
@@ -70,6 +71,8 @@ function Chat() {
                 connectToWs();
             }, 1000);
         });
+        }
+        
     };
 
     //根據最新訊息，將聊天室下拉到當前最新訊息
@@ -86,7 +89,7 @@ function Chat() {
 
     //根據當前在線用戶顯示離線用戶
     useEffect(() => {
-        axios.get("/people")
+        axios.get("/chat/people")
             .then(res => {
                 const offLinePeopleArr = res.data
                     .filter(person => person._id !== id)
@@ -114,7 +117,7 @@ function Chat() {
         // dispatch(clearMessages());
         // console.log(messages);
         if (selectedUserId) { //debug:加入條件式，避免頁面重新渲染時selectedUser為null，卻向伺服器發送請求，導致頁面渲染錯誤
-            axios.get("/messages/" + selectedUserId)
+            axios.get("/chat/messages/" + selectedUserId)
                 .then(res => {
                     dispatch(setMessages(res.data));
                     dispatch(removeNewMessageIndicators(selectedUserId));
@@ -244,7 +247,7 @@ function Chat() {
 
 
     const logout = () => {
-        axios.post("/logout").then(() => {
+        axios.post("/chat/logout").then(() => {
             dispatch(setId(null));
             dispatch(setLoggedInUsername(null));
         })

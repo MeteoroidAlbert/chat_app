@@ -21,12 +21,12 @@ function App() {
     if (window.location.hostname === "localhost") {
       URL = "http://localhost:5000";
     } else {
-      URL = "https://chat-app-server-c0q0.onrender.com";
+      URL = "https://news-weather-app-4.onrender.com";
     }
 
     axios.defaults.baseURL = URL;
     axios.defaults.withCredentials = true;
-    axios.get("/profile")
+    axios.get("/chat/profile")
       .then(res => {
         dispatch(setId(res.data.userId));
         dispatch(setLoggedInUsername(res.data.username));

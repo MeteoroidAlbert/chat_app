@@ -18,7 +18,7 @@ function RegisterAndLoginForm() {
     const handleSubmit = (event) => {
         setError("");
         setLoading(true);
-        const url = isLoginOrRegister === "register" ? "/register" : "/login"
+        const url = isLoginOrRegister === "register" ? "/chat/register" : "/chat/login"
         event.preventDefault();
         axios({
             method: "post",
