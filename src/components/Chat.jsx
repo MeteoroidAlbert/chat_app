@@ -50,9 +50,9 @@ function Chat() {
     function connectToWs() {
         let wsURL;
         if (window.location.hostname === "localhost") {
-            wsURL = "ws://localhost:5000/chat";
+            wsURL = "ws://localhost:5000";
         } else {
-            wsURL = "wss://chat-app-server-c0q0.onrender.com";
+            wsURL = "https://news-weather-app-4.onrender.com";
         };
 
 
