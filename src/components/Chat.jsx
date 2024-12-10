@@ -28,7 +28,7 @@ function Chat() {
     const divUnderMessages = useRef();
     const messagesRef = useRef(messages);
     const selectedUserIdRef = useRef(selectedUserId);
-
+    const filteredPeopleRef = useRef(filteredPeople);
 
 
 
@@ -151,9 +151,15 @@ function Chat() {
 
 
     useEffect(() => {
+        const onlinePeopleExcludeOurUser = { ...onlinePeople };     //處理:避免顯示用戶本人在聯絡人列上
+        delete onlinePeopleExcludeOurUser[id];
+        const allPeople = { ...onlinePeopleExcludeOurUser, ...offLinePeople };
         setFilteredPeople(allPeople);
     }, [onlinePeople, offLinePeople]);
 
+    useEffect(() => {
+        filteredPeopleRef.current = filteredPeople;
+    }, [filteredPeople])
 
 
 
@@ -209,8 +215,8 @@ function Chat() {
     };
 
 
-    const onlinePeopleExcludeOurUser = { ...onlinePeople };     //處理:避免顯示用戶本人在聯絡人列上
-    delete onlinePeopleExcludeOurUser[id];
+    // const onlinePeopleExcludeOurUser = { ...onlinePeople };     //處理:避免顯示用戶本人在聯絡人列上
+    // delete onlinePeopleExcludeOurUser[id];
 
 
     const sendMessage = (e, file = null) => {
@@ -271,10 +277,10 @@ function Chat() {
 
     const weekDay = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
-    const allPeople = { ...onlinePeopleExcludeOurUser, ...offLinePeople };
+    // const allPeople = { ...onlinePeopleExcludeOurUser, ...offLinePeople };
 
     const handleFilterPeople = (e) => {
-        const peopleFound = Object.entries(allPeople)
+        const peopleFound = Object.entries(filteredPeopleRef.current)
             .filter(([key, value]) => value.toLowerCase().includes(e.target.value.toLowerCase()))
             .reduce((acc, [key, value]) => {
                 acc[key] = value;
